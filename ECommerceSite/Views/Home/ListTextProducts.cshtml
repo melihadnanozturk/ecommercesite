@@ -1,0 +1,104 @@
+﻿@model ECommerceSite.Models.ViewTextProdModel
+
+@{
+    ViewBag.Title = "ListTextProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container d-flex justify-content-center own-container">
+        @using (Html.BeginForm("ListTechProducts", "Home", FormMethod.Get))
+        {
+
+            <input type="hidden" name="category" id="techCategoryInput" />
+
+            <div class="dropdown">
+
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Techonogy
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" onclick="setCategoryAndSubmit('techCategoryInput', 'Tablet')">Tablet</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="setCategoryAndSubmit('techCategoryInput', 'Telefon')">Telephone</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="setCategoryAndSubmit('techCategoryInput', 'Bilgisayar')">Computer</a></li>
+                </ul>
+            </div>
+        }
+
+        @using (Html.BeginForm("ListEduProducts", "Home", FormMethod.Get))
+        {
+
+            <input type="hidden" name="category" id="eduCategoryInput" />
+
+
+            <div class="dropdown own-dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Education
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" onclick="setCategoryAndSubmit('eduCategoryInput', 'Kalem')">Pencil</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="setCategoryAndSubmit('eduCategoryInput', 'Kitap')">Book</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="setCategoryAndSubmit('eduCategoryInput', 'Defter')">Notebook</a></li>
+                </ul>
+            </div>
+        }
+
+        @using (Html.BeginForm("ListTextProducts", "Home", FormMethod.Get))
+        {
+
+            <input type="hidden" name="category" id="textCategoryInput" />
+
+            <div class="dropdown ">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Textile
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#" onclick="setCategoryAndSubmit('textCategoryInput', 'Erkek Giyim')">Male</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#" onclick="setCategoryAndSubmit('textCategoryInput', 'Kadın Giyim')">Female</a>
+                    </li>
+                </ul>
+            </div>
+        }
+
+    </div>
+
+    <div class="container own">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var item in Model.Text_Prods)
+            {
+                <div class="col">
+                    <div class="card shadow-lg">
+                        <img src="@Url.Content(item.Image)" class="card-img-top" alt="..." style="height:296px; width:296px">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Prod_Name)</h5>
+                            <p class="card-text">
+                                @Html.DisplayFor(modelItem => item.Price) $
+                            </p>
+                            <div class="d-flex justify-content-between">
+
+                                @*Sepete Ekle Dediğimde bana bir tane popup çıkıp sepete eklendi desin*@
+                                <a href="@Url.Action("AddTextPordToBasket", "Home", new { id = item.Id })" class="btn btn-outline-success">
+                                    <i class="bi bi-bag-plus" style="margin-right: 1rem"></i>Basket
+                                </a>
+                                <a href="@Url.Action("GetTextProdDetails", "Home", new { id = item.Id })" class="btn btn-outline-secondary">
+                                    <i class="bi bi-search" style="margin-right: 1rem"></i>Review
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script>
+        function setCategoryAndSubmit(inputId, category) {
+            document.getElementById(inputId).value = category;
+            document.getElementById(inputId).form.submit();
+        }
+    </script>
+</main>

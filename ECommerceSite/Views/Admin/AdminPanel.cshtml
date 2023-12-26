@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+}
+
+@*<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ürün Seçimi</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+
+        <div class="container text-center" style="padding-top: 100px;">
+            @Html.ActionLink("Tech Prod", "Index", "Tech_Prod", null, new { @class = "btn btn-primary m-2" })
+            @Html.ActionLink("Edu Prod", "Index", "Edu_Prod", null, new { @class = "btn btn-secondary m-2" })
+            @Html.ActionLink("Text Prod", "Index", "Text_Prod", null, new { @class = "btn btn-success m-2" })
+        </div>
+
+    </body>
+    </html>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Paneli</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Panel</th>
+                            <th scope="col">Açıklama</th>
+                            <th scope="col">İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Technology</td>
+                            <td>Manage Technology Products</td>
+                            <td>
+                            <a href="@Url.Action("Index", "Tech_Prod")" class="btn btn-success btn-block">Technology Prod PANEL</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Education</td>
+                            <td>Manage Education Products</td>
+                            <td>
+                                <a href="@Url.Action("Index", "Edu_Prod")" class="btn btn-success btn-block">Education Prod PANEL</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Textile</td>
+                            <td>Manage Textile Products</td>
+                            <td>
+                                <a href="@Url.Action("Index", "Text_Prod")" class="btn btn-success btn-block">Textile Prod PANEL</a>
+                            </td>
+                        </tr>
+                        <!-- Diğer panel seçenekleri -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

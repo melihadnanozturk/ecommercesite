@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "MakePayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var isLogin = HttpContext.Current.Session["isLogin"];
+    decimal totalAmount = Convert.ToDecimal(HttpContext.Current.Session["totalAmount"]);
+
+    if (isLogin.Equals(true))
+    {
+        decimal discount = totalAmount * 0.10m; // %10 indirim hesaplama
+        totalAmount = totalAmount - discount;
+    }
+
+        ViewBag.Title = "ShowBasket";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+        var technologyProducts = HttpContext.Current.Session["TechProducts"] as List<ECommerceSite.Models.Tech_Prod>;
+        var educationProducts = HttpContext.Current.Session["EduProducts"] as List<ECommerceSite.Models.Edu_Prod>;
+        var textileProducts = HttpContext.Current.Session["TextProducts"] as List<ECommerceSite.Models.Text_Prod>;
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        /* Kart Animasyonu Stilleri */
+        .card-animation {
+            perspective: 1000px;
+            margin-top: 0;
+        }
+
+        .card-front, .card-back {
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            position: absolute;
+            width: 300px;
+            height: 180px;
+            backface-visibility: hidden;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #007bff; /* Mavi Arka Plan */
+            color: #fff; /* Beyaz Yazı Rengi */
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        .flip {
+            transform: rotateY(180deg);
+        }
+
+        .row.align-items-start {
+            align-items: start; /* Başlangıç noktasında hizalar */
+        }
+
+        .card-animation {
+            margin-top: 7rem; /* Kartın üst boşluğunu ayarlar */
+            /* Diğer kart animasyonu stilleri */
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row align-items-start">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Ödeme Bilgileri</h2>
+                <form id="payment-form">
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="cardNumber" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="expiryDate" class="form-label">Expire Date</label>
+                        <input type="text" class="form-control" id="expiryDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="text" class="form-control" id="cvv" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalAmount" class="form-label">Total Amount</label>
+                        <input type="text" class="form-control" id="totalAmount" disabled>
+                        <br />
+                        <p style="color: red"> 10% Discount on Cart Total for Our Member Customers !!!</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Complete Payment</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div id="card-animation" class="card-animation">
+                    <div class="card-front">
+                        <span id="card-number-display">•••• •••• •••• ••••</span><br>
+                        <span id="expiry-display">MM/YY</span>
+                    </div>
+                    <div class="card-back">
+                        <span id="cvv-display">•••</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cardNumberInput = document.getElementById('cardNumber');
+            const expiryInput = document.getElementById('expiryDate');
+            const cvvInput = document.getElementById('cvv');
+            const totalAmountInput = document.getElementById('totalAmount');
+
+            // Sadece sayısal girişleri kabul eden fonksiyon
+            function allowOnlyNumbers(e) {
+                var charCode = (e.which) ? e.which : e.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    e.preventDefault();
+                    return false;
+                }
+                return true;
+            }
+
+            // Input alanları için event listener ekleme
+            cardNumberInput.addEventListener('keypress', allowOnlyNumbers);
+            expiryInput.addEventListener('keypress', allowOnlyNumbers);
+            cvvInput.addEventListener('keypress', allowOnlyNumbers);
+            totalAmountInput.addEventListener('keypress', allowOnlyNumbers);
+
+            cardNumberInput.addEventListener('input', function () {
+                document.getElementById('card-number-display').textContent = this.value;
+            });
+
+            expiryInput.addEventListener('input', function () {
+                document.getElementById('expiry-display').textContent = this.value;
+            });
+
+            cvvInput.addEventListener('focus', function () {
+                document.getElementById('card-animation').classList.add('flip');
+            });
+
+            cvvInput.addEventListener('blur', function () {
+                document.getElementById('card-animation').classList.remove('flip');
+            });
+
+            document.getElementById('totalAmount').value = @totalAmount;
+
+            document.getElementById('payment-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('Ödeme işlemi tamamlandı!');
+            });
+        });
+
+    document.getElementById('paymentButton').addEventListener('click', function() {
+        // Burada ödeme işlemi yapılır (eğer AJAX kullanıyorsanız)
+        // İşlem tamamlandıktan sonra kullanıcıyı başka bir sayfaya yönlendirin
+        window.location.href = '/yeni-sayfa-url'; // Yönlendirilecek URL
+    });
+    </script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,135 @@
+﻿@model ECommerceSite.Models.BasketViewModel
+@{
+    ViewBag.Title = "ShowBasket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var technologyProducts = HttpContext.Current.Session["TechProducts"] as List<ECommerceSite.Models.Tech_Prod>;
+    var educationProducts = HttpContext.Current.Session["EduProducts"] as List<ECommerceSite.Models.Edu_Prod>;
+    var textileProducts = HttpContext.Current.Session["TextProducts"] as List<ECommerceSite.Models.Text_Prod>;
+
+}
+
+@{
+    decimal totalTechnologyPrice = 0;
+    decimal totalEducationPrice = 0;
+    decimal totalTextilePrice = 0;
+    if (technologyProducts != null && technologyProducts.Any())
+    {
+        foreach (var product in technologyProducts)
+        {
+            totalTechnologyPrice += product.Price;
+        }
+    }
+
+    if (educationProducts != null && educationProducts.Any())
+    {
+        foreach (var product in educationProducts)
+        {
+            totalEducationPrice += product.Price;
+        }
+    }
+
+    if (textileProducts != null && textileProducts.Any())
+    {
+        foreach (var product in textileProducts)
+        {
+            totalTextilePrice += product.Price;
+        }
+    }
+
+
+    var totalAmount = totalTechnologyPrice + totalEducationPrice + totalTextilePrice;
+    HttpContext.Current.Session.Add("totalAmount",totalAmount);
+}
+
+<h2>ShowBasket</h2>
+<br />
+
+<div class="accordion" id="accordionExample">
+
+    @if (technologyProducts != null && technologyProducts.Any())
+    {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button style="font-weight:600" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Technology Products
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show own-accordion-collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+                    @foreach (var product in technologyProducts)
+                    {
+                        <p style="font-size:1.5rem" >@product.Prod_Name - @product.Price $</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (educationProducts != null && educationProducts.Any())
+    {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button style="font-weight:600" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Education Products
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show own-accordion-collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+                    @foreach (var product in educationProducts)
+                    {
+                        <p style="font-size:1.5rem">@product.Prod_Name - @product.Price $</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+    @if (textileProducts != null && textileProducts.Any())
+    {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button style="font-weight:600" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Textile Products
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show own-accordion-collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+                    @foreach (var product in textileProducts)
+                    {
+                        <p style="font-size:1.5rem">@product.Prod_Name - @product.Price $</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="payment-section" style="margin-top:1rem">
+
+    <a href="@Url.Action("MakePayment", "Home")" class="btn btn-primary">
+        Make Payment
+    </a>
+
+    <span style="float:right; font-size:1.5rem; ">Total Amount: @totalAmount $</span>
+</div>
+
+<style>
+    .own-accordion-collapse {
+        max-height: 400px; /* Bu değeri ihtiyaca göre ayarlayabilirsiniz */
+        overflow-y: auto; /* İçerik çok uzunsa kaydırmayı etkinleştir */
+        margin-bottom: 20px; /* Accordionlar arasındaki boşluk */
+    }
+</style>
+
+<script>
+
+
+    document.getElementById('totalAmount').innerText = totalAmount.toFixed(2);
+</script>
+

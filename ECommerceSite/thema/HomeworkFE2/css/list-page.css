@@ -1,0 +1,21 @@
+.own-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.own-dropdown{
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.drop-down-select{
+    cursor: pointer;
+}
+
+.own-card {
+    transition: box-shadow 0.3s, border-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Kartýn üzerine gelindiðinde gölgeli efekt */
+    border-color: #800080; /* Mor çerçeve rengi */
+    cursor: pointer;
+}
+

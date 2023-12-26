@@ -1,0 +1,74 @@
+﻿@model ECommerceSite.Models.Text_Prod
+
+@{
+    ViewBag.Title = "GetTextProdDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col md-6">
+                <img src="@Url.Content(Model.Image)" class="card-img-top" alt="..." style="width:611px; height:414px">
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>@Html.DisplayFor(model => model.Prod_Name) </h2>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-12">
+                        @{
+                            int seed = Model.Id;
+                            Random random = new Random(seed);
+                            int randomNumber = random.Next(1000, 9999);
+                        }
+                        <span class="product-number"> # @randomNumber</span><br /><br />
+                        <span class="lable lable-primary">
+                            In Stock : @Html.DisplayFor(model => model.Stok)
+                        </span>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                    <div class="fs-3" style="margin-top: 10px;">
+                        <i class="bi bi-currency-dollar"></i> @Html.DisplayFor(model => model.Price)
+                    </div>
+                </div>
+                <div style="margin-top: 25px;">
+                    <a href="#" onclick="history.back();return false;" class="btn btn-outline-secondary" style="margin-right: 25px;">
+                        <i class="bi bi-tags" style="margin-right: 5px;"></i>
+                        Continue Shopping
+                    </a>
+                    <a href="@Url.Action("AddTextPordToBasket", "Home", new { id = Model.Id })" class="btn btn-outline-success">
+                        <i class="bi bi-bag-plus" style="margin-right: 5px"></i>Add Basket
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Description</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Technicial Specifications</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Payment Option</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0" style="margin-top: 15px;">@Html.DisplayFor(model => model.Description)</div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0" style="margin-top: 15px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem pariatur amet perferendis cum enim quis cupiditate ducimus. Eligendi, quisquam porro adipisci, corrupti error, repudiandae harum aperiam sit accusamus tempore saepe? Minima incidunt rem, fuga soluta quasi deserunt nostrum atque inventore ut praesentium, temporibus ratione. Rem quam cupiditate quos deserunt voluptas.</div>
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0" style="margin-top: 15px;">ONLY CREDIT CARD  </div>
+            <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0" style="margin-top: 15px;">...</div>
+        </div>
+    </div>
+</main>

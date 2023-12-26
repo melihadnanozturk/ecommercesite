@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cd546ffbd88148f6823aa4695c220ab4" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="maocoModel.Adress" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Basket" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Edu_Category" Width="1.5" PointX="1.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Edu_Prod" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Edu_Saled_Prod" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Tech_Category" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Tech_Prod" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Tech_Saled_Prod" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Text_Category" Width="1.5" PointX="1.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Text_Prod" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.Text_Saled_Prod" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="maocoModel.User" Width="1.5" PointX="8" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="maocoModel.FK_User_Adress" ManuallyRouted="false" />
+        <AssociationConnector Association="maocoModel.FK_Edu_Saled_Prod_Basket" ManuallyRouted="false" />
+        <AssociationConnector Association="maocoModel.FK_Tech_Saled_Prod_Basket" ManuallyRouted="false" />
+        <AssociationConnector Association="maocoModel.FK_Text_Saled_Prod_Basket" ManuallyRouted="false" />
+        <AssociationConnector Association="maocoModel.FK_Edu_Prod_Edu_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="maocoModel.FK_Edu_Saled_Prod_Edu_Prod" ManuallyRouted="false" />
+        <AssociationConnector Association="maocoModel.FK_Tech_Prod_Tech_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="maocoModel.FK_Tech_Saled_Prod_Tech_Prod" ManuallyRouted="false" />
+        <AssociationConnector Association="maocoModel.FK_Text_Prod_Text_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="maocoModel.FK_Text_Saled_Prod_Text_Prod" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

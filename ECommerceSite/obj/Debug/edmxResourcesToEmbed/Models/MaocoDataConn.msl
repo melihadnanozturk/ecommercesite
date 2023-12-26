@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="maocoModelStoreContainer" CdmEntityContainer="maocoConnEntities">
+    <EntitySetMapping Name="Adress">
+      <EntityTypeMapping TypeName="maocoModel.Adress">
+        <MappingFragment StoreEntitySet="Adress">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Neigborhood" ColumnName="Neigborhood" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Open_Adress" ColumnName="Open_Adress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Basket">
+      <EntityTypeMapping TypeName="maocoModel.Basket">
+        <MappingFragment StoreEntitySet="Basket">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+          <ScalarProperty Name="Payment_Method" ColumnName="Payment_Method" />
+          <ScalarProperty Name="Created_At" ColumnName="Created_At" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Edu_Category">
+      <EntityTypeMapping TypeName="maocoModel.Edu_Category">
+        <MappingFragment StoreEntitySet="Edu_Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Edu_Prod">
+      <EntityTypeMapping TypeName="maocoModel.Edu_Prod">
+        <MappingFragment StoreEntitySet="Edu_Prod">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Stok" ColumnName="Stok" />
+          <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Edu_Saled_Prod">
+      <EntityTypeMapping TypeName="maocoModel.Edu_Saled_Prod">
+        <MappingFragment StoreEntitySet="Edu_Saled_Prod">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Edu_Prod_Id" ColumnName="Edu_Prod_Id" />
+          <ScalarProperty Name="Basket_Id" ColumnName="Basket_Id" />
+          <ScalarProperty Name="Saled_Number" ColumnName="Saled_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tech_Category">
+      <EntityTypeMapping TypeName="maocoModel.Tech_Category">
+        <MappingFragment StoreEntitySet="Tech_Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tech_Prod">
+      <EntityTypeMapping TypeName="maocoModel.Tech_Prod">
+        <MappingFragment StoreEntitySet="Tech_Prod">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Stok" ColumnName="Stok" />
+          <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tech_Saled_Prod">
+      <EntityTypeMapping TypeName="maocoModel.Tech_Saled_Prod">
+        <MappingFragment StoreEntitySet="Tech_Saled_Prod">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Tech_Prod_Id" ColumnName="Tech_Prod_Id" />
+          <ScalarProperty Name="Basket_Id" ColumnName="Basket_Id" />
+          <ScalarProperty Name="Saled_Number" ColumnName="Saled_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Text_Category">
+      <EntityTypeMapping TypeName="maocoModel.Text_Category">
+        <MappingFragment StoreEntitySet="Text_Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Text_Prod">
+      <EntityTypeMapping TypeName="maocoModel.Text_Prod">
+        <MappingFragment StoreEntitySet="Text_Prod">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Stok" ColumnName="Stok" />
+          <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Text_Saled_Prod">
+      <EntityTypeMapping TypeName="maocoModel.Text_Saled_Prod">
+        <MappingFragment StoreEntitySet="Text_Saled_Prod">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Basket_Id" ColumnName="Basket_Id" />
+          <ScalarProperty Name="Saled_Number" ColumnName="Saled_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="maocoModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="Adres_Id" ColumnName="Adres_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

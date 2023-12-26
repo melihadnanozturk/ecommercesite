@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="maocoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Adress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Neigborhood" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PostCode" Type="Int32" Nullable="false" />
+    <Property Name="Open_Adress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Adress" FromRole="Adress" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Basket">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Id" Type="Int32" />
+    <Property Name="Total_Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Payment_Method" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created_At" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Edu_Saled_Prod" Relationship="Self.FK_Edu_Saled_Prod_Basket" FromRole="Basket" ToRole="Edu_Saled_Prod" />
+    <NavigationProperty Name="Tech_Saled_Prod" Relationship="Self.FK_Tech_Saled_Prod_Basket" FromRole="Basket" ToRole="Tech_Saled_Prod" />
+    <NavigationProperty Name="Text_Saled_Prod" Relationship="Self.FK_Text_Saled_Prod_Basket" FromRole="Basket" ToRole="Text_Saled_Prod" />
+  </EntityType>
+  <EntityType Name="Edu_Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Edu_Prod" Relationship="Self.FK_Edu_Prod_Edu_Category" FromRole="Edu_Category" ToRole="Edu_Prod" />
+  </EntityType>
+  <EntityType Name="Edu_Prod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prod_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Stok" Type="Int32" Nullable="false" />
+    <Property Name="Category_Id" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Edu_Category" Relationship="Self.FK_Edu_Prod_Edu_Category" FromRole="Edu_Prod" ToRole="Edu_Category" />
+    <NavigationProperty Name="Edu_Saled_Prod" Relationship="Self.FK_Edu_Saled_Prod_Edu_Prod" FromRole="Edu_Prod" ToRole="Edu_Saled_Prod" />
+  </EntityType>
+  <EntityType Name="Edu_Saled_Prod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Edu_Prod_Id" Type="Int32" Nullable="false" />
+    <Property Name="Basket_Id" Type="Int32" Nullable="false" />
+    <Property Name="Saled_Number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Basket" Relationship="Self.FK_Edu_Saled_Prod_Basket" FromRole="Edu_Saled_Prod" ToRole="Basket" />
+    <NavigationProperty Name="Edu_Prod" Relationship="Self.FK_Edu_Saled_Prod_Edu_Prod" FromRole="Edu_Saled_Prod" ToRole="Edu_Prod" />
+  </EntityType>
+  <EntityType Name="Tech_Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Tech_Prod" Relationship="Self.FK_Tech_Prod_Tech_Category" FromRole="Tech_Category" ToRole="Tech_Prod" />
+  </EntityType>
+  <EntityType Name="Tech_Prod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prod_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Stok" Type="Int32" Nullable="false" />
+    <Property Name="Category_Id" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Tech_Category" Relationship="Self.FK_Tech_Prod_Tech_Category" FromRole="Tech_Prod" ToRole="Tech_Category" />
+    <NavigationProperty Name="Tech_Saled_Prod" Relationship="Self.FK_Tech_Saled_Prod_Tech_Prod" FromRole="Tech_Prod" ToRole="Tech_Saled_Prod" />
+  </EntityType>
+  <EntityType Name="Tech_Saled_Prod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tech_Prod_Id" Type="Int32" Nullable="false" />
+    <Property Name="Basket_Id" Type="Int32" Nullable="false" />
+    <Property Name="Saled_Number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Basket" Relationship="Self.FK_Tech_Saled_Prod_Basket" FromRole="Tech_Saled_Prod" ToRole="Basket" />
+    <NavigationProperty Name="Tech_Prod" Relationship="Self.FK_Tech_Saled_Prod_Tech_Prod" FromRole="Tech_Saled_Prod" ToRole="Tech_Prod" />
+  </EntityType>
+  <EntityType Name="Text_Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Text_Prod" Relationship="Self.FK_Text_Prod_Text_Category" FromRole="Text_Category" ToRole="Text_Prod" />
+  </EntityType>
+  <EntityType Name="Text_Prod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prod_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Stok" Type="Int32" Nullable="false" />
+    <Property Name="Category_Id" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Text_Category" Relationship="Self.FK_Text_Prod_Text_Category" FromRole="Text_Prod" ToRole="Text_Category" />
+    <NavigationProperty Name="Text_Saled_Prod" Relationship="Self.FK_Text_Saled_Prod_Text_Prod" FromRole="Text_Prod" ToRole="Text_Saled_Prod" />
+  </EntityType>
+  <EntityType Name="Text_Saled_Prod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prod_Id" Type="Int32" Nullable="false" />
+    <Property Name="Basket_Id" Type="Int32" Nullable="false" />
+    <Property Name="Saled_Number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Basket" Relationship="Self.FK_Text_Saled_Prod_Basket" FromRole="Text_Saled_Prod" ToRole="Basket" />
+    <NavigationProperty Name="Text_Prod" Relationship="Self.FK_Text_Saled_Prod_Text_Prod" FromRole="Text_Saled_Prod" ToRole="Text_Prod" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <Property Name="Adres_Id" Type="Int32" />
+    <NavigationProperty Name="Adress" Relationship="Self.FK_User_Adress" FromRole="User" ToRole="Adress" />
+  </EntityType>
+  <Association Name="FK_User_Adress">
+    <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adress">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Adres_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Edu_Saled_Prod_Basket">
+    <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
+    <End Role="Edu_Saled_Prod" Type="Self.Edu_Saled_Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Basket">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Edu_Saled_Prod">
+        <PropertyRef Name="Basket_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tech_Saled_Prod_Basket">
+    <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
+    <End Role="Tech_Saled_Prod" Type="Self.Tech_Saled_Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Basket">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tech_Saled_Prod">
+        <PropertyRef Name="Basket_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Text_Saled_Prod_Basket">
+    <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
+    <End Role="Text_Saled_Prod" Type="Self.Text_Saled_Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Basket">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Text_Saled_Prod">
+        <PropertyRef Name="Basket_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Edu_Prod_Edu_Category">
+    <End Role="Edu_Category" Type="Self.Edu_Category" Multiplicity="1" />
+    <End Role="Edu_Prod" Type="Self.Edu_Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Edu_Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Edu_Prod">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Edu_Saled_Prod_Edu_Prod">
+    <End Role="Edu_Prod" Type="Self.Edu_Prod" Multiplicity="1" />
+    <End Role="Edu_Saled_Prod" Type="Self.Edu_Saled_Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Edu_Prod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Edu_Saled_Prod">
+        <PropertyRef Name="Edu_Prod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tech_Prod_Tech_Category">
+    <End Role="Tech_Category" Type="Self.Tech_Category" Multiplicity="1" />
+    <End Role="Tech_Prod" Type="Self.Tech_Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tech_Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tech_Prod">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tech_Saled_Prod_Tech_Prod">
+    <End Role="Tech_Prod" Type="Self.Tech_Prod" Multiplicity="1" />
+    <End Role="Tech_Saled_Prod" Type="Self.Tech_Saled_Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tech_Prod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tech_Saled_Prod">
+        <PropertyRef Name="Tech_Prod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Text_Prod_Text_Category">
+    <End Role="Text_Category" Type="Self.Text_Category" Multiplicity="1" />
+    <End Role="Text_Prod" Type="Self.Text_Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Text_Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Text_Prod">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Text_Saled_Prod_Text_Prod">
+    <End Role="Text_Prod" Type="Self.Text_Prod" Multiplicity="1" />
+    <End Role="Text_Saled_Prod" Type="Self.Text_Saled_Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Text_Prod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Text_Saled_Prod">
+        <PropertyRef Name="Prod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="maocoConnEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Adress" EntityType="Self.Adress" />
+    <EntitySet Name="Basket" EntityType="Self.Basket" />
+    <EntitySet Name="Edu_Category" EntityType="Self.Edu_Category" />
+    <EntitySet Name="Edu_Prod" EntityType="Self.Edu_Prod" />
+    <EntitySet Name="Edu_Saled_Prod" EntityType="Self.Edu_Saled_Prod" />
+    <EntitySet Name="Tech_Category" EntityType="Self.Tech_Category" />
+    <EntitySet Name="Tech_Prod" EntityType="Self.Tech_Prod" />
+    <EntitySet Name="Tech_Saled_Prod" EntityType="Self.Tech_Saled_Prod" />
+    <EntitySet Name="Text_Category" EntityType="Self.Text_Category" />
+    <EntitySet Name="Text_Prod" EntityType="Self.Text_Prod" />
+    <EntitySet Name="Text_Saled_Prod" EntityType="Self.Text_Saled_Prod" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_User_Adress" Association="Self.FK_User_Adress">
+      <End Role="Adress" EntitySet="Adress" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Edu_Saled_Prod_Basket" Association="Self.FK_Edu_Saled_Prod_Basket">
+      <End Role="Basket" EntitySet="Basket" />
+      <End Role="Edu_Saled_Prod" EntitySet="Edu_Saled_Prod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tech_Saled_Prod_Basket" Association="Self.FK_Tech_Saled_Prod_Basket">
+      <End Role="Basket" EntitySet="Basket" />
+      <End Role="Tech_Saled_Prod" EntitySet="Tech_Saled_Prod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Text_Saled_Prod_Basket" Association="Self.FK_Text_Saled_Prod_Basket">
+      <End Role="Basket" EntitySet="Basket" />
+      <End Role="Text_Saled_Prod" EntitySet="Text_Saled_Prod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Edu_Prod_Edu_Category" Association="Self.FK_Edu_Prod_Edu_Category">
+      <End Role="Edu_Category" EntitySet="Edu_Category" />
+      <End Role="Edu_Prod" EntitySet="Edu_Prod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Edu_Saled_Prod_Edu_Prod" Association="Self.FK_Edu_Saled_Prod_Edu_Prod">
+      <End Role="Edu_Prod" EntitySet="Edu_Prod" />
+      <End Role="Edu_Saled_Prod" EntitySet="Edu_Saled_Prod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tech_Prod_Tech_Category" Association="Self.FK_Tech_Prod_Tech_Category">
+      <End Role="Tech_Category" EntitySet="Tech_Category" />
+      <End Role="Tech_Prod" EntitySet="Tech_Prod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tech_Saled_Prod_Tech_Prod" Association="Self.FK_Tech_Saled_Prod_Tech_Prod">
+      <End Role="Tech_Prod" EntitySet="Tech_Prod" />
+      <End Role="Tech_Saled_Prod" EntitySet="Tech_Saled_Prod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Text_Prod_Text_Category" Association="Self.FK_Text_Prod_Text_Category">
+      <End Role="Text_Category" EntitySet="Text_Category" />
+      <End Role="Text_Prod" EntitySet="Text_Prod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Text_Saled_Prod_Text_Prod" Association="Self.FK_Text_Saled_Prod_Text_Prod">
+      <End Role="Text_Prod" EntitySet="Text_Prod" />
+      <End Role="Text_Saled_Prod" EntitySet="Text_Saled_Prod" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

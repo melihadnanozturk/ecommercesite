@@ -1,0 +1,62 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.own-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical;
+}
+
+.own-home-prod-card-size {
+    max-width: 540px;
+    height: 300px;
+}
+
+.own-card-body {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
+.card-text-container {
+    flex-grow: 1; /* Bu div'in mevcut alanı doldurmasını sağlar */
+    display: flex;
+    align-items: center; /* İçeriği dikey olarak ortalar */
+}
+
+.own-slide {
+    margin-bottom : 20px;
+}
+
+.own-circle {
+    width: 50px; /* Dairenin genişliği */
+    height: 50px; /* Dairenin yüksekliği */
+    background-color: blue; /* Dairenin arka plan rengi */
+    border-radius: 50%; /* Daire şeklini oluşturmak için */
+    display: flex;
+    justify-content: center; /* İçerik yatay olarak ortalanacak */
+    align-items: center; /* İçerik dikey olarak ortalanacak */
+    color: white; /* Metin (veya ikon) rengi */
+    font-size: 20px; /* Metin (veya ikon) boyutu */
+}
+
